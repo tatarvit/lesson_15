@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<h1>Задача 4</h1>
+	<p>Розробити клас Baner</p>
+	<ul>
+		<li>Поля(властивості)</li>
+		<ul>
+			<li>Масив об’єктів ( графічних зображень та посилань на сайти)</li>
+		</ul>
+		<li>Методи (дії)</li>
+		<ul>
+			<li>Метод випадкового вибору об’єкта (графічного зображення та посилання)</li>
+			<li>Метод виведення випадкового банера</li>
+		</ul>
+	</ul>
+	<script>
+				function getRandomNum(min, max) {
+						return min + Math.floor(Math.random() * (max - min + 1))
+					}
+				// Масив об’єктів ( графічних зображень та посилань на сайти)
+					class Banner {
+						constructor() {
+							this.banners = [
+								{
+									imageSrc: '/img/amazon.png',
+									href: 'https://uk.wikipedia.org/wiki/Amazon.com'
+								},
+								{
+									imageSrc: '/img/javascript.png',
+									href: 'https://uk.wikipedia.org/wiki/JavaScript'
+								},
+								{
+									imageSrc: '/img/node_js.png',
+									href: 'https://ru.wikipedia.org/wiki/Node.js'
+								},
+								{
+									imageSrc: '/img/postman.png',
+									href: 'https://en.wikipedia.org/wiki/Postman_(software)'
+								},
+							]
+						}
+				// Метод випадкового вибору об’єкта (графічного зображення та посилання)
+						randomBanner() {
+							let randomNum = getRandomNum(0, this.banners.length - 1)
+							let bannerImage = this.banners[randomNum].imageSrc
+							let bannerHref = this.banners[randomNum].href
+							return { bannerImage, bannerHref }
+						}
+						bannerWatch() {
+							let { bannerImage, bannerHref } = this.randomBanner()
+							document.write(`<a href="${bannerHref}" class="banner">
+							<img class="banner__image" src="${bannerImage}" alt=""></a>`)
+						}
+					}
+				// Метод виведення випадкового банера
+					let result = new Banner
+					result.bannerWatch()
+	</script>
+
+</body>
+</html>

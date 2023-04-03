@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<h1>Задача 5</h1>
+	<p>Розробити клас «Керівник танців»
+	</p>
+	<ul>
+		<li>Поля(властивості)</li>
+		<ul>
+			<li>Масив імен хлопців</li>
+			<li>Масив імен дівчатй</li>
+		</ul>
+		<li>Методи (дії)</li>
+		<ul>
+			<li>Метод випадкового вибору імені хлопця</li>
+			<li>Метод випадкового вибору імені дівчини</li>
+			<li>Метод виведення пари для танців</li>
+			<li>Метод run , який ініціює через кожні 5 секунд виведення нової пари для танців</li>
+		</ul>
+	</ul>
+	<script>
+		function getRandomNum(min, max) {
+				return min + Math.floor(Math.random() * (max - min + 1))
+			}
+		class dancerClass {
+				constructor() {
+					this.nameBoy = ['James', 'Robert', 'John', 'Michael', 'David', 'William', 'Richard', 'Joseph', 'Thomas', 'Charles']
+					this.nameGirl = ['Mary', 'Patricia', 'Jennifer', 'Linda', 'Elizabeth', 'Barbara', 'Susan', 'Jessica', 'Sarah', 'Karen']
+				}
+
+		// Метод випадкового вибору імені хлопця
+				randomNameBoy(){
+					let randomIndex = getRandomNum(0,this.nameBoy.length-1)
+					return this.nameBoy[randomIndex]
+				}
+		// Метод випадкового вибору імені дівчини
+				randomNameGirl(){
+				let randomIndex = getRandomNum(0, this.nameGirl.length-1)
+				return this.nameGirl[randomIndex]
+			}
+		// Метод виведення пари для танців
+				dancerCouple(){
+					let boy = this.randomNameBoy()
+					let girl = this.randomNameGirl()
+					document.write(`${boy} -- ${girl}<br>`)
+				}
+		// Метод run , який ініціює через кожні 5 секунд виведення нової пари для танців
+				run() {
+				setInterval(() => this.dancerCouple(), 5000)
+			}
+		}
+		let couple = new dancerClass
+		couple.run()
+	</script>
+
+</body>
+
+</html>

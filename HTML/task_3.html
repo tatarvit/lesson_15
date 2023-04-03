@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<h1>Задача 3</h1>
+	<p>Створити об’єкт «Авто».</p>
+	<ul>
+		<li>Поля(властивості)</li>
+		<ul>
+			<li>Марка</li>
+			<li>Розмір бака</li>
+			<li>Кількість наявних літрів</li>
+			<li>Кількість місць</li>
+			<li>Кількість пасажирів</li>
+		</ul>
+		<li>Методи (дії)</li>
+		<ul>
+			<li>Заправка на вказану кількість літрів</li>
+			<li>Виведення кількості пасажирів</li>
+			<li>Додавання пасажирів</li>
+			<li>Висадка пасажирів</li>
+		</ul>
+	</ul>
+	<script>
+		let auto={
+		// ---------Поля(властивості)--------------
+			model: 'Mercedes-Benz Sprinter 519',
+			tankSize: 75,
+			litersAvailable: 20,
+			seatsForPassengers: 20,
+			quantityPassengers: 15,
+		// ---------Методи (дії)-------------------
+		// Заправка на вказану кількість літрів
+			getRefueling: function (){
+				return this.tankSize - this.litersAvailable
+			},
+		// Виведення кількості пасажирів
+			getQuantityPassengers: function(vacantSeats){
+				return this.seatsForPassengers - vacantSeats
+			},
+		// Додавання пасажирів
+			getPassengerEntry: function (passengersGoInto){
+				return this.quantityPassengers + passengersGoInto
+			},
+		// Висадка пасажирів
+			getPassengersExit: function (passengersGoOut) {
+				return this.getQuantityPassengers - passengersGoOut
+			},
+
+		}
+
+		document.write(`Заправка на літрів ${auto.getRefueling()}<br>`)
+		document.write(`Кількость пасажирів ${auto.getQuantityPassengers(5)}<br>`)
+		document.write(`Додавання пасажирів ${auto.getQuantityPassengers(3)}<br>`)
+		document.write(`Висадка пасажирів ${auto.getQuantityPassengers(7)}<br>`)
+	</script>
+	<br>
+</body>
+</html>

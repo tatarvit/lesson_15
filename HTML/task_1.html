@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<h1>Задача 1</h1>
+	<p>
+		Дано два об’єкта. Обидва містять масив цілих чисел. При цьому у одному з них є функція знаходження суми, а 
+		у іншому – функція для знаходження добутку тих, які знаходяться між заданими мінімальним і максимальних 
+		значенням. Використати обидва методи стосовно обидвох об’єктів (використати call, apply)
+	</p>
+
+	<script>
+		let object1={
+	// ------властивості---------
+			arey: [3,5,6,2,9,10,7],
+	// ------методи--------------
+			getSum: function(){
+				return this.arey.reduce((prevSum, number) =>prevSum + number)
+			},
+		}
+
+		let object2={
+	// ------властивості---------
+			arey: [3, 2, 6, 1, 9, 10, 7],
+	// ------методи--------------
+			getProduct: function(min, max){
+				return this.arey.reduce((prevProduct, number) => number > min && number < max ? prevProduct * number : prevProduct)
+			}
+		}
+
+		document.write(`Прямий розрахунок: сума першого о'єкта -- ${object1.getSum()} добуток другого об'єкта ${object2.getProduct(3, 7)}<br>`)
+	// знайти значення в об'єктах з використанням call
+		let sumObject_call = object1.getSum.call(object2)
+		let poductObject_call = object2.getProduct.call(object1, 3, 7)
+		document.write(`З використанням call: сума другого об'єкта -- ${sumObject_call}, добуток першого о'єкта -- ${poductObject_call}<br>`)
+
+	// знайти значення в об'єктах з використанням apply
+		let sumObject_apply = object1.getSum.call(object2)
+		let poductObject_apply = object2.getProduct.call(object1, [5, 7])
+		document.write(`З використанням apply: сума другого об'єкта -- ${sumObject_apply}, добуток першого о'єкта -- ${poductObject_apply}`)
+	</script>
+</body>
+</html>

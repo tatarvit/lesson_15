@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<style>
+	table,
+	th,
+	td {
+		border: 1px solid black;
+	}
+</style>
+<body>
+	<h1>Задача 2</h1>
+	<p>
+		Створити об’єкт «Тир». У масиві зберігаються 1, якщо у цьому квадраті є заєць і 0 в іншому випадку.
+	</p>
+	<ul>
+		<li>Поля(властивості)</li>
+		<ul>
+			<li>
+				Масив, у якому зберігається поле з зайцями
+			</li>
+		</ul>
+		<li>Методи (дії)</li>
+		<ul>
+			<li>Метод пострілу (задається позиція пострілу)</li>
+			<li>Виведення ігрового поля</li>
+		</ul>
+	</ul>
+	<script>
+		// Створюємо ігрове поле
+		function getRandomNumbers(min, max) {
+				return min + Math.floor(Math.random() * max - min + 1)
+			}
+
+		function getFreeCell(fieldGameWithRabbits) {
+			let rabbitIndex
+			const lastIndex = fieldGameWithRabbits.length - 1
+			do {
+				rabbitIndex = getRandomNumbers(0, lastIndex)
+			} while (fieldGameWithRabbits[rabbitIndex] === 1)
+			return rabbitIndex
+			}
+
+		function getGameFieldWithRabbits(quantityCell, quantityRabbits) {
+			const fieldGameWithRabbits = new Array(quantityCell).fill(0)
+			for (let i = 0; i < quantityRabbits; i++) {
+				let rabbitIndex = getFreeCell(fieldGameWithRabbits)
+				fieldGameWithRabbits[rabbitIndex] = 1
+			}
+			return fieldGameWithRabbits
+		}
+
+		let gameFieldWithRabbits=getGameFieldWithRabbits(10,5)
+
+		let shootingStand = {
+		// Поля(властивості) об'єкта
+		//Масив, у якому зберігається поле з зайцями
+				gameField: gameFieldWithRabbits,
+
+		// Методи (дії) 
+		// Метод пострілу (задається позиція пострілу)
+				getShot : function(){
+					let target =  parseInt(prompt(`Введите координаты выстрела (от 1 до ${this.gameField.length})`, 0)) - 1
+					if (this.gameField[target] === 1){
+						alert('Добре, постріл прийшовся в ціль')
+						this.gameField[target] = 0
+					}
+					else alert('Нажаль, постріл прийшовся мимо цілі')
+				},
+
+		// Виведення ігрового поля
+				getGameField1 : function(){
+					document.write(`<table>`)
+						document.write('<tr>')
+					for (let i = 0; i < this.gameField.length; i++) {
+						document.write(`<td>${this.gameField[i]}</td>`)
+					}
+					document.write('</tr>')
+					document.write(`</table>`)
+				},
+		}
+
+		// ввиведення результату 
+		// генерація ігрового поля і розстановка зайців
+		shootingStand.getGameField1()
+		// надаємо 5 пострілів
+		shootingStand.getShot()
+		shootingStand.getShot()
+		shootingStand.getShot()
+		shootingStand.getShot()
+		shootingStand.getShot()
+		// результат пострілів
+		shootingStand.getGameField1()
+	
+
+	</script>
+</body>
+</html>
